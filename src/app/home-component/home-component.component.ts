@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 
 @Component({
@@ -6,24 +6,27 @@ import { AppService } from '../app.service';
   templateUrl: './home-component.component.html',
   styleUrls: ['./home-component.component.css']
 })
-export class HomeComponentComponent {
+
+export class HomeComponentComponent implements OnInit{
   username: string;
   result: any;
   repos: any[] = [];
+  error: string;
 
-  constructor(private _appService: AppService) {
-  	this._appService.getUsers().subscribe((data) => this.result = data);
-  	this._appService.getRepos().subscribe((data) => this.repos = data);
-  }
+  constructor(private _appService: AppService) { }
 
   searchUser(){
   	this._appService.setUsername(this.username);
-  	this._appService.getUsers().subscribe((data) => this.result = data);
-  	this._appService.getRepos().subscribe((data) => this.repos = data);
+  	        this._appService.getUsers().subscribe((data) => this.result = data, (error) => this.error = error)
+  	this._appService.getRepos().subscribe((data) => this.repos = data, (error) => this.error = error)
+
   }
 
   
-
+  ngOnInit(){
+        this._appService.getUsers().subscribe((data) => this.result = data, (error) => this.error = error);
+        this._appService.getRepos().subscribe((data) => this.repos = data, (error) => this.error = error);
+  }
 
 
 
