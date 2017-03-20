@@ -1,4 +1,4 @@
-# Angular2 Github Users Searcher
+# Angular2 Github Search App
 
 #Prerequisites
 
