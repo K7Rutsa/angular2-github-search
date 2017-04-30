@@ -1,4 +1,4 @@
-# Angular2 Github Search App
+# Angular 4 Github Search App
 
 #Prerequisites
 
